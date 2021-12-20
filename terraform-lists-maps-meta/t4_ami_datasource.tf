@@ -1,9 +1,9 @@
 #Get latest AMI id for Amazon Linux
 
 data "aws_ami" "amznlinux2" {
-  most_recent      = true
-  owners           = ["amazon"]
-  
+  most_recent = true
+  owners      = ["amazon"]
+
   filter {
     name   = "name"
     values = ["amzn2-ami-kernel-5.10-hvm-*-gp2"]
@@ -20,7 +20,7 @@ data "aws_ami" "amznlinux2" {
   }
 
   filter {
-    name = "architecture"
+    name   = "architecture"
     values = ["x86_64"]
   }
 }

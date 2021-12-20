@@ -12,4 +12,5 @@ cd /var/www/html/
 sudo rm index.html
 cd /home/ec2-user/
 sudo git clone https://github.com/prafulpatel16/php-html-projects.git
-sudo cp -r php-html-projects/iPortfoliov1_emp/* /var/www/html/                                        
+sudo cp -r php-html-projects/iPortfoliov1_emp/* /var/www/html/
+sudo curl http://169.254.169.254/latest/dynamic/instance-identity/document -o /var/www/html/metadata.html                                        
