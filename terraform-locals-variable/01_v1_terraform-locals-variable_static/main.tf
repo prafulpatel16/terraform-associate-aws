@@ -16,8 +16,8 @@ resource "aws_vpc" "praful_vpc" {
 }
 
 resource "aws_ebs_volume" "praful_ebs" {
-  availability_zone = us-east-1a
-  size              = 40
+  availability_zone = "us-east-1a"
+  size              = 20
 
   tags = {
     Name = "Project1-Portfolio_Praful"

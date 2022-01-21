@@ -7,7 +7,7 @@ data "aws_availability_zones" "praful_azones" {
   }
 }
 */
-#Ec2 instance
+#Ec2 instance with dynamic of all azs
 
 resource "aws_instance" "Web-Server" {
   ami                         = data.aws_ami.amznlinux2.id

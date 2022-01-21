@@ -7,30 +7,35 @@ module "vpc" {
 
   # VPC Basic details
 
-  name = "vpc-dev"
-  cidr = "10.0.0.0/16" # 10.0.0.0/8 is reserved for EC2-Classic
+  #name = "vpc-dev"
+  name = "${local.name}-${var.vpc_name}" # Using a local variable and vpc variable
+  cidr = var.vpc_cidr_block # 10.0.0.0/8 is reserved for EC2-Classic
 
-  azs             = ["us-east-1a", "us-east-1b"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
+  azs             = var.vpc_availability_zones
+  private_subnets = var.vpc_private_subnets
+  public_subnets  = var.vpc_public_subnets
 
 
   #Database subnets
-  create_database_subnet_group       = true
-  create_database_subnet_route_table = true
-  database_subnets                   = ["10.0.150.0/24", "10.0.152.0/24"]
+  create_database_subnet_group       = var.vpc_create_database_subnet_group
+  create_database_subnet_route_table = var.vpc_create_database_subnet_route_table
+  database_subnets                   = var.vpc_database_subnets
 
   #create_database_nat_gateway_route = true
   #create_database_internet_gateway_route = false
 
   #NAT Gateway - Outbound Internet connection
-  enable_nat_gateway = true
-  single_nat_gateway = true
+  enable_nat_gateway = var.vpc_enable_nat_gateway
+  single_nat_gateway = var.vpc_single_nat_gateway
 
   #VPC DNS parameters
 
   enable_dns_hostnames = true
   enable_dns_support   = true
+
+  tags = local.common_tags
+    vpc_tags = local.common_tags
+
 
   public_subnet_tags = {
     Type = "Public-Subnet-Web"
@@ -42,15 +47,6 @@ module "vpc" {
 
   database_subnet_tags = {
     Type = "Database-Subnet-DB"
-  }
-
-  tags = {
-    Owner       = "Praful"
-    Environment = "Dev"
-  }
-
-  vpc_tags = {
-    Name = "vpc-dev"
   }
 
 }

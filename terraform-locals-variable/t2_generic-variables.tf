@@ -6,3 +6,15 @@ variable "aws_region" {
   type        = string
   default     = "us-east-1"
 }
+# Environment variable
+variable "Proj_Name" {
+  description = "Project Name"
+  type = string
+  default = "Portfolio_Praful"
+}
+
+variable "owner" {
+  description = "Owner of the Project"
+  type = string
+  default = "Praful Patel"
+}
